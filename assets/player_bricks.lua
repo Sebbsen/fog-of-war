@@ -14,10 +14,20 @@ local BRICKS = {
 		{0, 0, 0},
 		{1, 1, 1},
 		{0, 1, 0}
+	},
+	["cl"] = {
+		{0, 0, 0},
+		{0, 1, 1},
+		{0, 1, 0}
+	},
+	["O"] = {
+		{0, 0, 0},
+		{0, 1, 1},
+		{0, 1, 1}
 	}
 }
 
-local BRICK_SEQUENCE = {"T","J","L","J","T","J","L","J","J","L","J","T","J","L","J","J","T"}
+local BRICK_SEQUENCE = {"cl","J","O","J","cl","O","L","cl","J","O","cl","O","J","cl","J","O","T"}
 
 local CURRENT_BRICK = 1
 

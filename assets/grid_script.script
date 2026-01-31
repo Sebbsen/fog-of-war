@@ -314,7 +314,7 @@ function on_input(self, action_id, action)
 		end
 		print("klick")
 		reset_last_placement_matrix(self)
-		local selected_brick = BRICKS["T"]
+		local selected_brick = CURRENT_BRICK
 
 		for y = 1, BRICK_SIZE do
 			for x = 1, BRICK_SIZE do
