@@ -2,34 +2,37 @@
 local GRID_WIDTH = 10
 local GRID_HEIGHT = 10
 
--- Das ist unsere Matrix (Zahlen-Tabelle)
-local function create_ground_matrix()
-	local m = {}
-	for y = 1, GRID_HEIGHT do
-		m[y] = {}
-		for x = 1, GRID_WIDTH do
-			-- Wir füllen alles mit der 1 (dein erstes Tile in der Tilesource)
-			-- Wenn du ein Schachbrettmuster willst: ((x + y) % 2 == 0) ? 1 : 2
-			m[y][x] = math.random(1, 5) 
-		end
-	end
-	return m
-end
+local TILESETS_KEY = {
+	[1] = "forest",
+	[2] = "mountain",
+	[3] = "medow",
+	[4] = "pond"
+}
 
-local function create_fog_matrix()
-	local m = {}
-	local i = 1
-	for y = 1, GRID_HEIGHT do
-		m[y] = {}
-		for x = 1, GRID_WIDTH do
-			-- Wir füllen alles mit der 1 (dein erstes Tile in der Tilesource)
-			-- Wenn du ein Schachbrettmuster willst: ((x + y) % 2 == 0) ? 1 : 2
-			m[y][x] = 10+i
-			i = i+1
-		end
-	end
-	return m
-end
+local TILESETS = {
+	["forest"] = {
+		["start"] = 1,
+		["end"] = 3 
+	},
+	["mountain"] = {
+		["start"] = 11,
+		["end"] = 13 
+	},
+	["medow"] = {
+		["start"] = 21,
+		["end"] = 25 
+	},
+	["pond"] = {
+		["start"] = 31,
+		["end"] = 33 
+	},
+	["fog"] = {
+		["start"] = 101,
+		["end"] = 200 
+	}
+}
+
+local TILE_SIZE = 64
 
 local BRICK_SIZE = 3
 local BRICKS = {
@@ -49,6 +52,37 @@ local BRICKS = {
 		{0, 1, 0}
 	}
 }
+
+
+-- Das ist unsere Matrix (Zahlen-Tabelle)
+local function create_ground_matrix()
+	local m = {}
+	for y = 1, GRID_HEIGHT do
+		m[y] = {}
+		for x = 1, GRID_WIDTH do
+			-- Wir füllen alles mit der 1 (dein erstes Tile in der Tilesource)
+			-- Wenn du ein Schachbrettmuster willst: ((x + y) % 2 == 0) ? 1 : 2
+			m[y][x] = math.random(1, 4) 
+		end
+	end
+	return m
+end
+
+local function create_fog_matrix()
+	local tile_start = TILESETS["fog"]["start"]
+	local m = {}
+	local i = 0
+	for y = 1, GRID_HEIGHT do
+		m[y] = {}
+		for x = 1, GRID_WIDTH do
+			-- Wir füllen alles mit der 1 (dein erstes Tile in der Tilesource)
+			-- Wenn du ein Schachbrettmuster willst: ((x + y) % 2 == 0) ? 1 : 2
+			m[y][x] = tile_start+i
+			i = i+1
+		end
+	end
+	return m
+end
 	
 
 function init(self)
@@ -58,10 +92,29 @@ function init(self)
 
 	msg.post(".", "acquire_input_focus")
 	
-	draw_tilemap(self)
+	draw_tilemap(self, true)
 end
 
-function draw_tilemap(self)
+function getRandomGroundTileOfType(tile_type) 
+	-- 1 ist forest 2 ist mountain, 3 ist medow, 4 ist pound
+	-- ich will die Zahl 1,2,3,4 dann dazu ein random tile dieser art zurückgeben
+	-- mit dem medow.start und medow.end etc
+
+	-- Hole den Namen basierend auf dem Typ (z.B. "forest")
+	local set_name = TILESETS_KEY[tile_type]
+
+	-- Sicherheitshalber prüfen, ob der Typ existiert
+	if set_name and TILESETS[set_name] then
+		local set = TILESETS[set_name]
+		-- Gibt eine Zufallszahl zwischen dem Start- und End-Tile zurück
+		return math.random(set["start"], set["end"])
+	end
+
+	-- Fallback: Falls etwas schief geht, gib Tile 0 oder 1 zurück
+	return 1
+end
+
+function draw_tilemap(self, draw_ground)
 	print("draw")
 	-- 2. Pfad zur Tilemap-Komponente definieren
 	-- "#level" ist die ID der Tilemap-Komponente im Game Object
@@ -70,22 +123,25 @@ function draw_tilemap(self)
 	-- 3. Die Matrix auf die Tilemap zeichnen
 	for y = 1, GRID_HEIGHT do
 		for x = 1, GRID_WIDTH do
-			local ground_tile_to_draw = self.ground_matrix[y][x]
+			local ground_tile_to_draw = getRandomGroundTileOfType(self.ground_matrix[y][x])
 			local fog_tile_to_draw = self.fog_matrix[y][x]
 			-- invertieren, damit das erste Tile oben links ist
 			local inverted_y = (GRID_HEIGHT + 1) - y
 
 			-- Syntax: tilemap.set_tile(url, layer_name, x, y, tile_id)
-			tilemap.set_tile(tilemap_url, "ground", x, inverted_y, ground_tile_to_draw)
+			if draw_ground then
+				tilemap.set_tile(tilemap_url, "ground", x, inverted_y, ground_tile_to_draw)
+			end
 			tilemap.set_tile(tilemap_url, "fog", x, inverted_y, fog_tile_to_draw)
 		end
 	end
 end
 
+
+
 function on_input(self, action_id, action)
 	if action_id == hash("touch") and action.pressed then
 		print("klick")
-		local TILE_SIZE = 64
 		local selected_brick = BRICKS["T"]
 		local mouse_x = math.floor(action.x / TILE_SIZE) + 1
 		local mouse_y = math.floor(action.y / TILE_SIZE) + 1
@@ -102,7 +158,7 @@ function on_input(self, action_id, action)
 				end
 			end
 		end
-		draw_tilemap(self)
+		draw_tilemap(self, false)
 	end
 	
 end
