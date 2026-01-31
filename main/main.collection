@@ -17,6 +17,10 @@ embedded_instances {
   "components {\n"
   "  id: \"level\"\n"
   "  component: \"/assets/Tiles/level.tilemap\"\n"
+  "  position {\n"
+  "    x: 64.0\n"
+  "    y: 64.0\n"
+  "  }\n"
   "}\n"
   ""
 }
