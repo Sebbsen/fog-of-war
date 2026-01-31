@@ -136,6 +136,7 @@ end
 
 local function fill_grid(grid)
 	local types = {}
+	local orientation = {}
 	local free = true
 	local placed = false
 	local placed_t = false
@@ -145,6 +146,7 @@ local function fill_grid(grid)
 
 	for t = 1, 4 do
 		types[t] = randomPermutation0to71()
+		orientation[t] = math.random(0, 3)
 	end
 
 	-- alle Typen immer wieder der Reihe nach versuchen zu placen
@@ -154,7 +156,7 @@ local function fill_grid(grid)
 			placed = false
 			for n = 1, #types[t] do
 				-- Test, ob Position frei ist
-				local position = place(types[t][n], t-1, 0)
+				local position = place(types[t][n], t-1, orientation[t])
 				free = true
 				for x = 0, 3 do
 					if grid[position[x*2+2]+1][position[x*2+1]+1] > 0 then
@@ -174,8 +176,8 @@ local function fill_grid(grid)
 			-- wenn nichts geplaced wurde, abbrechen
 			if placed == true then
 				placed_t = true
-			else
-				break  --für alle Typen
+			--else
+				--break  --für alle Typen
 			end
 		end -- unterschiedliches Terrain
 		if placed_t == false then
@@ -185,10 +187,27 @@ local function fill_grid(grid)
 
 end
 
+-- Lücken zählen
+local function check_gaps(grid)
+	local gaps = 0
+	for y = 1, 10 do
+		for x = 1, 10 do
+			if grid[y][x] == 0 then
+				gaps = gaps + 1
+			end
+		end
+	end
+	return gaps
+end
+
 function get_grid()
 	msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
 
-	local grid = {
+	local grid = {}
+	local best_grid = {}
+	local gaps = 100
+	for z = 1, 10 do
+	    grid = {
 		{0,0,0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0,0,0},
@@ -199,15 +218,19 @@ function get_grid()
 		{0,0,0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0,0,0}
-	}
+		}
 	-- Add initialization code here
 	-- Learn more: https://defold.com/manuals/script/
 	-- Remove this function if not needed
 
-	fill_grid(grid)
+		fill_grid(grid)
+		local gaps_t = check_gaps(grid)
+		if gaps_t < gaps then
+			best_grid = grid
+			gaps = gaps_t
+		end
+		print(gaps)
+	end	
 
-	
-
-	return grid
-
+	return best_grid
 end
