@@ -1,0 +1,10 @@
+images {
+  image: "/assets/Pictures/Ende/ende.png"
+}
+images {
+  image: "/assets/Pictures/Ende/punkte.png"
+}
+images {
+  image: "/assets/Pictures/Ende/zurueck.png"
+}
+extrude_borders: 2

@@ -1,11 +1,19 @@
+fonts {
+  name: "always_on_top"
+  font: "/builtins/fonts/debug/always_on_top.font"
+}
 textures {
   name: "mainmenu"
   texture: "/assets/Pictures/Menu/mainmenu.atlas"
 }
+textures {
+  name: "ende"
+  texture: "/assets/Pictures/Ende/ende.atlas"
+}
 nodes {
   position {
-    x: 850.0
-    y: 82.0
+    x: 875.0
+    y: 59.0
   }
   size {
     x: 150.0
@@ -37,6 +45,164 @@ nodes {
   type: TYPE_BOX
   id: "current_tile"
   parent: "current"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 806.0
+    y: 620.0
+  }
+  scale {
+    x: -1.0
+  }
+  type: TYPE_BOX
+  texture: "mainmenu/menu-button-2"
+  id: "score"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 66.0
+    y: -16.0
+  }
+  rotation {
+    z: 4.103
+  }
+  scale {
+    x: -0.3
+    y: 0.3
+  }
+  type: TYPE_BOX
+  texture: "ende/punkte"
+  id: "score_text"
+  parent: "score"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -64.0
+    y: -29.0
+  }
+  scale {
+    x: -5.0
+    y: 5.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "0"
+  font: "always_on_top"
+  id: "text"
+  parent: "score"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -400.0
+    y: 390.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "done"
+  inherit_alpha: true
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 2.0
+    y: 2.0
+  }
+  type: TYPE_BOX
+  texture: "mainmenu/menu-button-2"
+  id: "done_bg"
+  parent: "done"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -120.0
+    y: -61.0
+  }
+  rotation {
+    z: 6.759
+  }
+  scale {
+    x: 0.8
+    y: 0.8
+  }
+  type: TYPE_BOX
+  texture: "ende/ende"
+  id: "beendet"
+  parent: "done"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 208.0
+    y: -79.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "back"
+  parent: "done"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 9.0
+  }
+  rotation {
+    z: 176.328
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  type: TYPE_BOX
+  texture: "mainmenu/menu-button-1"
+  id: "back_bg"
+  parent: "back"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 5.0
+  }
+  scale {
+    x: 0.4
+    y: 0.4
+  }
+  type: TYPE_BOX
+  texture: "ende/zurueck"
+  id: "back_text"
+  parent: "back"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 184.0
+    y: 20.0
+  }
+  scale {
+    x: 0.3
+    y: 0.3
+  }
+  type: TYPE_BOX
+  texture: "ende/punkte"
+  id: "box1"
+  parent: "done"
   size_mode: SIZE_MODE_AUTO
 }
 material: "/builtins/materials/gui.material"
