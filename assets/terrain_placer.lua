@@ -1,0 +1,211 @@
+function final(self)
+	-- Add finalization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function update(self, dt)
+	-- Add update code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function fixed_update(self, dt)
+	-- This function is called if 'Fixed Update Frequency' is enabled in the Engine section of game.project
+	-- Can be coupled with fixed updates of the physics simulation if 'Use Fixed Timestep' is enabled in
+	-- Physics section of game.project
+	-- Add update code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+	-- Add input-handling code here. The game object this script is attached to
+	-- must have acquired input focus:
+	--
+	--    msg.post(".", "acquire_input_focus")
+	--
+	-- All mapped input bindings will be received. Mouse and touch input will
+	-- be received regardless of where on the screen it happened.
+	-- Learn more: https://defold.com/manuals/input/
+	-- Remove this function if not needed
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Learn more: https://defold.com/manuals/hot-reload/
+	-- Remove this function if not needed
+end
+
+local function place(terrain_position, terrain_type, terrain_orientation)
+	-- Zeile und Spalte nach Orientierung bestimmen
+	local shapes_h = {
+		{ 1, 1, 1, 0, 1, 0}, --T
+		{ 0, 1, 0, 1, 1, 1}, --T
+
+		{ 1, 1, 1, 0, 0, 1}, --L
+		{ 1, 0, 0, 1, 1, 1}, --L
+
+		{ 1, 1, 1, 1, 0, 0}, --J
+		{ 0, 0, 1, 1, 1, 1}, --J
+
+		{ 1, 1, 0, 0, 1, 1}, --Z/S
+		{ 0, 1, 1, 1, 1, 0}  --Z/S
+	}
+	local shapes_v = {
+		{ 0, 1, 1, 0}, --T
+		{ 1, 1, 1, 1}, --T
+		{ 0, 1, 1, 0}, --T
+
+		{ 1, 0, 1, 1}, --L
+		{ 1, 0, 0, 1}, --L
+		{ 1, 1, 0, 1}, --L
+
+		{ 0, 1, 1, 1}, --J
+		{ 0, 1, 1, 0}, --J
+		{ 1, 1, 1, 0}, --J
+
+		{ 1, 0, 0, 1}, --Z/S
+		{ 1, 1, 1, 1}, --Z/S
+		{ 0, 1, 1, 0}  --Z/S
+	}
+	local shape_x = 0
+	local shape_y = 0
+	local placement = {0,0,0,0,0,0,0,0}
+	local x = 0
+	local y = 0
+	local pos_ind = 1
+	-- Shape ermitteln
+	if terrain_orientation % 2 == 0 then
+		-- vertikale Ausrichtung
+		shape_y = terrain_type * 3
+		shape_x = math.floor( terrain_orientation / 2 ) * 2
+		x = terrain_position % 9
+		y = math.floor(terrain_position / 9)
+		-- Positionen ermitteln
+		for j = 0, 2 do
+			for i = 0, 1 do
+				if shapes_v[shape_y+j+1][shape_x+i+1] == 1 then
+					placement[pos_ind] = y + j
+					placement[pos_ind+1] = x + i
+					pos_ind = pos_ind + 2
+				end
+			end
+		end
+	else
+		-- horizontale Ausrichtung
+		shape_y = terrain_type * 2
+		shape_x = math.floor( terrain_orientation / 2 ) * 3
+		x = terrain_position % 8
+		y = math.floor(terrain_position / 8)
+		-- Positionen ermitteln
+		for j = 0, 1 do
+			for i = 0, 2 do
+				if shapes_h[shape_y+j+1][shape_x+i+1] == 1 then
+					placement[pos_ind] = y + j
+					placement[pos_ind+1] = x + i
+					pos_ind = pos_ind + 2
+				end
+			end
+		end
+	end
+	return placement
+end
+
+local function randomPermutation0to71()
+	local a = {}
+	-- füllen: Lua-Arrays sind 1-basiert, Werte sind aber 0..71
+	for i = 1, 72 do
+		a[i] = i - 1
+	end
+
+	-- Fisher–Yates Shuffle
+	for i = 72, 2, -1 do
+		local j = math.random(i) -- 1..i
+		a[i], a[j] = a[j], a[i]
+	end
+
+	return a
+end
+
+local function fill_grid(grid)
+	local types = {}
+	local free = true
+	local placed = false
+	local placed_t = false
+	-- Seed setzen (einmal beim Programmstart!)
+	math.randomseed(os.time())
+	math.random(); math.random(); math.random() -- optional: "warm up"
+
+	for t = 1, 4 do
+		types[t] = randomPermutation0to71()
+	end
+
+	-- alle Typen immer wieder der Reihe nach versuchen zu placen
+	for m = 1,25 do
+		placed_t = false
+		for t = 1, 4 do
+			placed = false
+			for n = 1, #types[t] do
+				-- Test, ob Position frei ist
+				local position = place(types[t][n], t-1, 0)
+				free = true
+				for x = 0, 3 do
+					if grid[position[x*2+2]+1][position[x*2+1]+1] > 0 then
+						free = false
+						break
+					end
+				end
+				if free == true then
+					placed = true
+					-- placen
+					for x = 0, 3 do
+						grid[position[x*2+2]+1][position[x*2+1]+1] = t
+					end
+					break -- type
+				end
+			end -- unterschiedliche Positionen
+			-- wenn nichts geplaced wurde, abbrechen
+			if placed == true then
+				placed_t = true
+			else
+				break  --für alle Typen
+			end
+		end -- unterschiedliches Terrain
+		if placed_t == false then
+			break  -- generell
+		end
+	end
+
+end
+
+function get_grid()
+	msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
+
+	local grid = {
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0}
+	}
+	-- Add initialization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+
+	fill_grid(grid)
+
+	return grid
+
+end
