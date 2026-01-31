@@ -42,7 +42,7 @@ nodes {
     z: 0.4
   }
   type: TYPE_BOX
-  texture: "tiles/l-shape-1"
+  texture: "tiles/L1"
   id: "current_tile"
   parent: "tiles"
   size_mode: SIZE_MODE_AUTO
@@ -61,7 +61,7 @@ nodes {
     z: 0.4
   }
   type: TYPE_BOX
-  texture: "tiles/l-shape-3"
+  texture: "tiles/L2"
   id: "next_tile"
   parent: "tiles"
   size_mode: SIZE_MODE_AUTO
