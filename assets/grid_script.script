@@ -1,0 +1,58 @@
+-- Wir definieren die Größe
+local GRID_WIDTH = 10
+local GRID_HEIGHT = 10
+
+-- Das ist unsere Matrix (Zahlen-Tabelle)
+local function create_ground_matrix()
+	local m = {}
+	for y = 1, GRID_HEIGHT do
+		m[y] = {}
+		for x = 1, GRID_WIDTH do
+			-- Wir füllen alles mit der 1 (dein erstes Tile in der Tilesource)
+			-- Wenn du ein Schachbrettmuster willst: ((x + y) % 2 == 0) ? 1 : 2
+			m[y][x] = math.random(1, 5) 
+		end
+	end
+	return m
+end
+
+local function create_fog_matrix()
+	local m = {}
+	local i = 1
+	for y = 1, GRID_HEIGHT do
+		m[y] = {}
+		for x = 1, GRID_WIDTH do
+			-- Wir füllen alles mit der 1 (dein erstes Tile in der Tilesource)
+			-- Wenn du ein Schachbrettmuster willst: ((x + y) % 2 == 0) ? 1 : 2
+			m[y][x] = 10+i
+			i = i+1
+		end
+	end
+	return m
+end
+	
+
+function init(self)
+	-- 1. Matrix generieren
+	self.ground_matrix = create_ground_matrix()
+	self.fog_matrix = create_fog_matrix()
+	
+
+	-- 2. Pfad zur Tilemap-Komponente definieren
+	-- "#level" ist die ID der Tilemap-Komponente im Game Object
+	local tilemap_url = "#level" 
+
+	-- 3. Die Matrix auf die Tilemap zeichnen
+	for y = 1, GRID_HEIGHT do
+		for x = 1, GRID_WIDTH do
+			local ground_tile_to_draw = self.ground_matrix[y][x]
+			local fog_tile_to_draw = self.fog_matrix[y][x]
+			-- invertieren, damit das erste Tile oben links ist
+			local inverted_y = (GRID_HEIGHT + 1) - y
+			
+			-- Syntax: tilemap.set_tile(url, layer_name, x, y, tile_id)
+			tilemap.set_tile(tilemap_url, "ground", x, inverted_y, ground_tile_to_draw)
+			tilemap.set_tile(tilemap_url, "fog", x, inverted_y, fog_tile_to_draw)
+		end
+	end
+end
