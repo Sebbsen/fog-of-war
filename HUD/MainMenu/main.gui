@@ -3,34 +3,18 @@ fonts {
   name: "always_on_top"
   font: "/builtins/fonts/debug/always_on_top.font"
 }
-nodes {
-  position {
-    x: 475.0
-    y: 494.0
-  }
-  scale {
-    x: 5.0
-    y: 5.0
-  }
-  size {
-    x: 200.0
-    y: 25.0
-  }
-  type: TYPE_TEXT
-  text: "Here May Be Dragons\n"
-  ""
-  font: "always_on_top"
-  id: "title"
-  inherit_alpha: true
+textures {
+  name: "mainmenu"
+  texture: "/assets/Pictures/Menu/mainmenu.atlas"
 }
 nodes {
   position {
-    x: 472.0
-    y: 325.0
+    x: 792.0
+    y: 473.0
   }
   size {
-    x: 200.0
-    y: 100.0
+    x: 250.0
+    y: 115.0
   }
   type: TYPE_BOX
   id: "play"
@@ -39,42 +23,40 @@ nodes {
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
-  size {
-    x: 200.0
-    y: 100.0
+  position {
+    y: -11.0
+  }
+  scale {
+    x: 0.7
+    y: 0.7
   }
   type: TYPE_BOX
+  texture: "mainmenu/menu-button-1"
   id: "play_bg"
   parent: "play"
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
+  position {
+    y: -10.0
+  }
   scale {
-    x: 3.0
-    y: 3.0
+    x: 0.7
+    y: 0.7
   }
-  size {
-    x: 50.0
-    y: 25.0
-  }
-  color {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  type: TYPE_TEXT
-  text: "Play"
-  font: "always_on_top"
+  type: TYPE_BOX
+  texture: "mainmenu/menu-start"
   id: "play_text"
   parent: "play"
+  size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
-    x: 480.0
-    y: 147.0
+    x: 795.0
+    y: 166.0
   }
   size {
-    x: 200.0
+    x: 260.0
     y: 100.0
   }
   type: TYPE_BOX
@@ -84,34 +66,90 @@ nodes {
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
-  size {
-    x: 200.0
-    y: 100.0
+  position {
+    y: 22.0
+  }
+  scale {
+    x: 0.8
+    y: 0.8
   }
   type: TYPE_BOX
+  texture: "mainmenu/menu-button-2"
   id: "help_bg"
   parent: "help"
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
+  position {
+    y: 19.0
+  }
   scale {
-    x: 3.0
-    y: 3.0
+    x: 0.8
+    y: 0.8
+  }
+  type: TYPE_BOX
+  texture: "mainmenu/menu-help"
+  id: "help_text"
+  parent: "help"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 350.0
+    y: 320.0
+  }
+  type: TYPE_BOX
+  texture: "mainmenu/hmbd-logo"
+  id: "logo"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 336.0
+    y: 262.0
   }
   size {
-    x: 50.0
-    y: 25.0
+    x: 200.0
+    y: 100.0
   }
-  color {
-    x: 0.0
-    y: 0.0
-    z: 0.0
+  type: TYPE_BOX
+  id: "instructions"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 1.5
+  }
+  type: TYPE_BOX
+  texture: "mainmenu/menu-button-2"
+  id: "box"
+  parent: "instructions"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: -13.0
+  }
+  rotation {
+    z: 3.703
+  }
+  size {
+    x: 300.0
+    y: 100.0
   }
   type: TYPE_TEXT
-  text: "Help"
+  text: "Place Tiles to lift the fog.\n"
+  "You can place tiles only next to the last Tile.\n"
+  "Don\'t wake the Dragons!"
   font: "always_on_top"
-  id: "text"
-  parent: "help"
+  id: "instructions_text"
+  line_break: true
+  parent: "instructions"
+  inherit_alpha: true
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
