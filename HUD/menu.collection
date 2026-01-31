@@ -8,3 +8,17 @@ embedded_instances {
   "}\n"
   ""
 }
+embedded_instances {
+  id: "loader"
+  data: "components {\n"
+  "  id: \"loader\"\n"
+  "  component: \"/main/loader.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"proxy_level\"\n"
+  "  type: \"collectionproxy\"\n"
+  "  data: \"collection: \\\"/main/main.collection\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
