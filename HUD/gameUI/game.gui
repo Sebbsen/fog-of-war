@@ -1,7 +1,11 @@
+textures {
+  name: "mainmenu"
+  texture: "/assets/Pictures/Menu/mainmenu.atlas"
+}
 nodes {
   position {
-    x: 792.0
-    y: 119.0
+    x: 850.0
+    y: 82.0
   }
   size {
     x: 150.0
@@ -16,14 +20,11 @@ nodes {
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
-  size {
-    x: 150.0
-    y: 150.0
-  }
-  color {
-    z: 0.302
+  scale {
+    x: 0.5
   }
   type: TYPE_BOX
+  texture: "mainmenu/menu-button-1"
   id: "current_bg"
   parent: "current"
   size_mode: SIZE_MODE_AUTO

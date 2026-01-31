@@ -1,0 +1,19 @@
+images {
+  image: "/assets/Pictures/Menu/hmbd-logo.png"
+}
+images {
+  image: "/assets/Pictures/Menu/hmbd-logo-dark.png"
+}
+images {
+  image: "/assets/Pictures/Menu/menu-button-1.png"
+}
+images {
+  image: "/assets/Pictures/Menu/menu-button-2.png"
+}
+images {
+  image: "/assets/Pictures/Menu/menu-help.png"
+}
+images {
+  image: "/assets/Pictures/Menu/menu-start.png"
+}
+extrude_borders: 2
