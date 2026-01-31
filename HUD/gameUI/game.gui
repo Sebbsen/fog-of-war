@@ -1,0 +1,42 @@
+nodes {
+  position {
+    x: 792.0
+    y: 119.0
+  }
+  size {
+    x: 150.0
+    y: 150.0
+  }
+  type: TYPE_BOX
+  id: "current"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_BOTTOM
+  inherit_alpha: true
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 150.0
+    y: 150.0
+  }
+  color {
+    z: 0.302
+  }
+  type: TYPE_BOX
+  id: "current_bg"
+  parent: "current"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 100.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "current_tile"
+  parent: "current"
+  size_mode: SIZE_MODE_AUTO
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
