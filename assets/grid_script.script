@@ -187,7 +187,13 @@ local function reset_last_placement_matrix(self)
 	self.last_placement_matrix = create_last_placement_matrix()
 end
 
+function legalBrickPlacement(self, grid_x, grid_y)
+	return isAdjacentToLastPlaced(self, grid_x, grid_y)
+end
 
+function isAdjacentToLastPlaced(self, grid_x, grid_y)
+	return true
+end
 
 
 
