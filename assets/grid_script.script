@@ -190,14 +190,15 @@ end
 
 
 
-function on_input(self, action_id, action)
-	-- 1. Mausposition immer berechnen
-	local mouse_x = math.floor(action.x / TILE_SIZE) + 1
-	local mouse_y = math.floor(action.y / TILE_SIZE) + 1
-	local mouse_y_inverted = (GRID_HEIGHT + 1) - mouse_y
 
+
+
+function on_input(self, action_id, action)
 	-- 2. HOVER EFFEKT (Muss außerhalb von action_id == hash("touch") sein!)
 	if action.x and action.y then
+		local mouse_x = math.floor(action.x / TILE_SIZE) + 1
+		local mouse_y = math.floor(action.y / TILE_SIZE) + 1
+		local mouse_y_inverted = (GRID_HEIGHT + 1) - mouse_y
 		-- Nur aktualisieren, wenn die Maus das Feld gewechselt hat
 		if mouse_x ~= self.last_mouse_x or mouse_y_inverted ~= self.last_mouse_y then
 			-- Alte Vorschau an der alten Position löschen
@@ -215,6 +216,12 @@ function on_input(self, action_id, action)
 	
 	-- 3. KLICK (Platzieren)
 	if action_id == hash("touch") and action.pressed then
+		local mouse_x = math.floor(action.x / TILE_SIZE) + 1
+		local mouse_y = math.floor(action.y / TILE_SIZE) + 1
+		local mouse_y_inverted = (GRID_HEIGHT + 1) - mouse_y
+		if not legalBrickPlacement() then
+			return
+		end
 		print("klick")
 		reset_last_placement_matrix(self)
 		local selected_brick = BRICKS["T"]
