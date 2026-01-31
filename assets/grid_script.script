@@ -30,14 +30,39 @@ local function create_fog_matrix()
 	end
 	return m
 end
+
+local BRICK_SIZE = 3
+local BRICKS = {
+	["L"] = {
+		{0, 1, 0},
+		{0, 1, 0},
+		{0, 1, 1}
+	},
+	["J"] = {
+		{0, 1, 0},
+		{0, 1, 0},
+		{1, 1, 0}
+	},
+	["T"] = {
+		{0, 0, 0},
+		{1, 1, 1},
+		{0, 1, 0}
+	}
+}
 	
 
 function init(self)
 	-- 1. Matrix generieren
 	self.ground_matrix = create_ground_matrix()
 	self.fog_matrix = create_fog_matrix()
-	
 
+	msg.post(".", "acquire_input_focus")
+	
+	draw_tilemap(self)
+end
+
+function draw_tilemap(self)
+	print("draw")
 	-- 2. Pfad zur Tilemap-Komponente definieren
 	-- "#level" ist die ID der Tilemap-Komponente im Game Object
 	local tilemap_url = "#level" 
@@ -49,10 +74,35 @@ function init(self)
 			local fog_tile_to_draw = self.fog_matrix[y][x]
 			-- invertieren, damit das erste Tile oben links ist
 			local inverted_y = (GRID_HEIGHT + 1) - y
-			
+
 			-- Syntax: tilemap.set_tile(url, layer_name, x, y, tile_id)
 			tilemap.set_tile(tilemap_url, "ground", x, inverted_y, ground_tile_to_draw)
 			tilemap.set_tile(tilemap_url, "fog", x, inverted_y, fog_tile_to_draw)
 		end
 	end
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash("touch") and action.pressed then
+		print("klick")
+		local TILE_SIZE = 64
+		local selected_brick = BRICKS["T"]
+		local mouse_x = math.floor(action.x / TILE_SIZE) + 1
+		local mouse_y = math.floor(action.y / TILE_SIZE) + 1
+		--invert y weil matrix auch inverted
+		mouse_y_inverted = (GRID_HEIGHT + 1) - mouse_y
+
+		
+
+
+		for y = 1, BRICK_SIZE do
+			for x = 1, BRICK_SIZE do
+				if selected_brick[y][x] == 1 then
+					self.fog_matrix[y+mouse_y_inverted-2][x+mouse_x-2] = 0;
+				end
+			end
+		end
+		draw_tilemap(self)
+	end
+	
 end
