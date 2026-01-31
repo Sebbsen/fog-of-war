@@ -1,0 +1,117 @@
+script: "/HUD/MainMenu/main.gui_script"
+fonts {
+  name: "always_on_top"
+  font: "/builtins/fonts/debug/always_on_top.font"
+}
+nodes {
+  position {
+    x: 475.0
+    y: 494.0
+  }
+  scale {
+    x: 5.0
+    y: 5.0
+  }
+  size {
+    x: 200.0
+    y: 25.0
+  }
+  type: TYPE_TEXT
+  text: "Here May Be Dragons\n"
+  ""
+  font: "always_on_top"
+  id: "title"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 472.0
+    y: 325.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "play"
+  inherit_alpha: true
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "play_bg"
+  parent: "play"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 3.0
+    y: 3.0
+  }
+  size {
+    x: 50.0
+    y: 25.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "Play"
+  font: "always_on_top"
+  id: "play_text"
+  parent: "play"
+}
+nodes {
+  position {
+    x: 480.0
+    y: 147.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "help"
+  inherit_alpha: true
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "help_bg"
+  parent: "help"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 3.0
+    y: 3.0
+  }
+  size {
+    x: 50.0
+    y: 25.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "Help"
+  font: "always_on_top"
+  id: "text"
+  parent: "help"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

@@ -2,16 +2,21 @@ name: "main"
 scale_along_z: 0
 embedded_instances {
   id: "go"
-  data: "embedded_components {\n"
-  "  id: \"linkerRand\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"\\\"\\n"
-  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "\"\n"
-  "}\n"
-  ""
+  data: ""
 }
 embedded_instances {
   id: "go1"
   data: ""
+}
+embedded_instances {
+  id: "grid_host"
+  data: "components {\n"
+  "  id: \"grid_script\"\n"
+  "  component: \"/assets/grid_script.script\"\n"
+  "}\n"
+  "components {\n"
+  "  id: \"level\"\n"
+  "  component: \"/assets/Tiles/level.tilemap\"\n"
+  "}\n"
+  ""
 }

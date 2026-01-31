@@ -1,0 +1,9 @@
+image: "/assets/Tiles/tilemap.jpg"
+tile_width: 64
+tile_height: 64
+collision_groups: "myTilemap"
+animations {
+  id: "anim"
+  start_tile: 1
+  end_tile: 1
+}
