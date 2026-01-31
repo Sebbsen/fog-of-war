@@ -60,6 +60,7 @@ local BRICKS = {
 }
 local CURRENT_BRICK = BRICKS["T"]
 
+--- --- CREATE MATRIX SECTION --- ---
 
 -- Das ist unsere Matrix (Zahlen-Tabelle)
 local function create_ground_matrix()
@@ -67,8 +68,6 @@ local function create_ground_matrix()
 	for y = 1, GRID_HEIGHT do
 		m[y] = {}
 		for x = 1, GRID_WIDTH do
-			-- Wir füllen alles mit der 1 (dein erstes Tile in der Tilesource)
-			-- Wenn du ein Schachbrettmuster willst: ((x + y) % 2 == 0) ? 1 : 2
 			m[y][x] = math.random(1, 4) 
 		end
 	end
@@ -82,10 +81,19 @@ local function create_fog_matrix()
 	for y = 1, GRID_HEIGHT do
 		m[y] = {}
 		for x = 1, GRID_WIDTH do
-			-- Wir füllen alles mit der 1 (dein erstes Tile in der Tilesource)
-			-- Wenn du ein Schachbrettmuster willst: ((x + y) % 2 == 0) ? 1 : 2
 			m[y][x] = tile_start+i
 			i = i+1
+		end
+	end
+	return m
+end
+
+local function create_last_placement_matrix()
+	local m = {}
+	for y = 1, GRID_HEIGHT do
+		m[y] = {}
+		for x = 1, GRID_WIDTH do
+			m[y][x] = 0
 		end
 	end
 	return m
@@ -97,6 +105,7 @@ function init(self)
 	-- self.ground_matrix = create_ground_matrix()
 	self.ground_matrix = get_grid()
 	self.fog_matrix = create_fog_matrix()
+	self.last_placement_matrix = create_last_placement_matrix()
 
 	msg.post(".", "acquire_input_focus")
 	
@@ -133,6 +142,7 @@ function draw_tilemap(self, draw_ground)
 		for x = 1, GRID_WIDTH do
 			local ground_tile_to_draw = getRandomGroundTileOfType(self.ground_matrix[y][x])
 			local fog_tile_to_draw = self.fog_matrix[y][x]
+			local last_placement_tile_to_draw = self.last_placement_matrix[y][x]
 			-- invertieren, damit das erste Tile oben links ist
 			local inverted_y = (GRID_HEIGHT + 1) - y
 
@@ -141,13 +151,15 @@ function draw_tilemap(self, draw_ground)
 				tilemap.set_tile(tilemap_url, "ground", x, inverted_y, ground_tile_to_draw)
 			end
 			tilemap.set_tile(tilemap_url, "fog", x, inverted_y, fog_tile_to_draw)
+			tilemap.set_tile(tilemap_url, "lastplacement", x, inverted_y, last_placement_tile_to_draw)
 		end
 	end
 end
+	
 
 local function draw_brick_preview(self, grid_x, grid_y, is_visible)
 	local tilemap_url = "#level"
-	local selected_brick = BRICKS["T"] -- Später durch self.current_brick ersetzbar
+	local selected_brick = CURRENT_BRICK -- Später durch self.current_brick ersetzbar
 
 	for y = 1, BRICK_SIZE do
 		for x = 1, BRICK_SIZE do
@@ -159,17 +171,22 @@ local function draw_brick_preview(self, grid_x, grid_y, is_visible)
 				if target_x >= 1 and target_x <= GRID_WIDTH and target_y >= 1 and target_y <= GRID_HEIGHT then
 					if is_visible then
 						-- Zeichne ein spezielles Preview-Tile (z.B. ID 0 oder ein semi-transparentes)
-						tilemap.set_tile(tilemap_url, "fog", target_x, target_y, 42)
+						tilemap.set_tile(tilemap_url, "preview", target_x, target_y, 42)
 					else
 						-- Stelle den Originalzustand aus der Matrix wieder her
 						local original_y = (GRID_HEIGHT + 1) - target_y
-						tilemap.set_tile(tilemap_url, "fog", target_x, target_y, self.fog_matrix[original_y][target_x])
+						tilemap.set_tile(tilemap_url, "preview", target_x, target_y, self.fog_matrix[original_y][target_x])
 					end
 				end
 			end
 		end
 	end
 end
+
+local function reset_last_placement_matrix(self) 
+	self.last_placement_matrix = create_last_placement_matrix()
+end
+
 
 
 
@@ -195,10 +212,11 @@ function on_input(self, action_id, action)
 			self.last_mouse_y = mouse_y_inverted
 		end
 	end
-
+	
 	-- 3. KLICK (Platzieren)
 	if action_id == hash("touch") and action.pressed then
 		print("klick")
+		reset_last_placement_matrix(self)
 		local selected_brick = BRICKS["T"]
 
 		for y = 1, BRICK_SIZE do
@@ -210,6 +228,7 @@ function on_input(self, action_id, action)
 					-- Sicherheits-Check, damit wir nicht außerhalb der Matrix schreiben
 					if target_y >= 1 and target_y <= GRID_HEIGHT and target_x >= 1 and target_x <= GRID_WIDTH then
 						self.fog_matrix[target_y][target_x] = 0
+						self.last_placement_matrix[target_y][target_x] = 43
 					end
 				end
 			end
