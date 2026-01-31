@@ -206,6 +206,8 @@ function get_grid()
 
 	fill_grid(grid)
 
+	
+
 	return grid
 
 end

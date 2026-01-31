@@ -1,4 +1,4 @@
-image: "/assets/Tiles/tilemap.jpg"
+image: "/assets/Tiles/tilemap.png"
 tile_width: 64
 tile_height: 64
 collision_groups: "myTilemap"
