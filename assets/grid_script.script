@@ -1,4 +1,6 @@
 require "assets.terrain_placer"
+require "assets.player_bricks"
+
 -- Wir definieren die Größe
 local GRID_WIDTH = 10
 local GRID_HEIGHT = 10
@@ -58,7 +60,7 @@ local BRICKS = {
 		{0, 1, 0}
 	}
 }
-local CURRENT_BRICK = BRICKS["T"]
+local CURRENT_BRICK = get_next_brick()
 
 --- --- CREATE MATRIX SECTION --- ---
 
@@ -330,6 +332,7 @@ function on_input(self, action_id, action)
 		end
 		-- Map neu zeichnen (ohne Ground, um Performance zu sparen)
 		draw_tilemap(self, false)
+		CURRENT_BRICK = get_next_brick()
 		
 		local points = 0
 		for y = 1, BRICK_SIZE do
