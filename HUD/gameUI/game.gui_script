@@ -1,5 +1,5 @@
 function init(self)
-	mg.post(".", acquire_input_focus)
+	msg.post(".", "acquire_input_focus")
 end
 
 function final(self)
@@ -17,7 +17,8 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("level_complete") then
 		local done = gui.get_node("done")
-		gui.animate(done, "position.x", 320, gui.EASING_OUTSINE, 1, 1.5)
+		gui.set_color(done, vmath.vector4(0, 0, 0, 1))
+		gui.animate(done, "position.x", 350, gui.EASING_OUTSINE, 1)
 	end
 end
 
@@ -28,6 +29,8 @@ function on_input(self, action_id, action)
 			msg.post("menu:/main", "show_main_menu")
 			msg.post("menu:/loader#loader", "unload_level")
 		end
+	elseif action_id == hash("gameover") then
+		msg.post("#", "level_complete")
 	end
 end
 

@@ -40,8 +40,8 @@ function on_input(self, action_id, action)
 				
 		if gui.pick_node(self.play, action.x, action.y) then --Wenn Start-Knopf gedrückt wird
 			print("play pressed")
-			msg.post("/loader#loader", "load_level")	--Wird das Level geladen
-			msg.post("#", "hide_main_menu")				--und das Hauptmenü deaktiviert
+			msg.post("/loader#loader", "load_level")		--Wird das Level geladen
+			msg.post("#", "hide_main_menu")					--und das Hauptmenü deaktiviert
 			
 		elseif gui.pick_node(self.help, action.x, action.y) then	--wenn Hilfe-Knopf gedrückt wird
 			print("help pressed")

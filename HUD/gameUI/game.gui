@@ -1,3 +1,4 @@
+script: "/HUD/gameUI/game.gui_script"
 fonts {
   name: "always_on_top"
   font: "/builtins/fonts/debug/always_on_top.font"
@@ -102,7 +103,7 @@ nodes {
 }
 nodes {
   position {
-    x: -400.0
+    x: -700.0
     y: 390.0
   }
   size {
@@ -124,6 +125,7 @@ nodes {
   texture: "mainmenu/menu-button-2"
   id: "done_bg"
   parent: "done"
+  inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
@@ -142,6 +144,23 @@ nodes {
   texture: "ende/ende"
   id: "beendet"
   parent: "done"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 184.0
+    y: 20.0
+  }
+  scale {
+    x: 0.3
+    y: 0.3
+  }
+  type: TYPE_BOX
+  texture: "ende/punkte"
+  id: "endscore"
+  parent: "done"
+  inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
@@ -158,6 +177,7 @@ nodes {
   parent: "done"
   inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
+  visible: false
 }
 nodes {
   position {
@@ -174,6 +194,7 @@ nodes {
   texture: "mainmenu/menu-button-1"
   id: "back_bg"
   parent: "back"
+  inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
@@ -188,21 +209,7 @@ nodes {
   texture: "ende/zurueck"
   id: "back_text"
   parent: "back"
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: 184.0
-    y: 20.0
-  }
-  scale {
-    x: 0.3
-    y: 0.3
-  }
-  type: TYPE_BOX
-  texture: "ende/punkte"
-  id: "box1"
-  parent: "done"
+  inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
 }
 material: "/builtins/materials/gui.material"
