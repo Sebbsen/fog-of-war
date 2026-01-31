@@ -27,8 +27,13 @@ function on_message(self, message_id, message, sender)
 	elseif message_id == hash("current_tiles") then
 		local current = gui.get_node("current_tile")
 		local next = gui.get_node("next_tile")
-		--gui.set_texture(current, texture)
-		--gui.set_texture(next, texture)
+		local current_tile = hash(message.current)
+		local next_tile = hash(message.next)
+		
+		gui.set_texture(current, tiles)
+		gui.play_flipbook(current, current_tile)
+		gui.set_texture(next, tiles)
+		gui.play_flipbook(next, next_tile)
 	end
 end
 
@@ -48,4 +53,25 @@ function on_reload(self)
 	-- Add reload-handling code here
 	-- Learn more: https://defold.com/manuals/hot-reload/
 	-- Remove this function if not needed
+end
+
+local function set_gui_image(self, tile, node)
+	local texture = nil
+	local tile_map = {
+		L1 = { tex = "tiles", image = hash("l-1") },
+		L2 = { tex = "tiles", image = hash("l-2") },
+		L3 = { tex = "tiles", image = hash("l-3") },
+		L4 = { tex = "tiles", image = hash("l-4") },
+		T1 = { tex = "tiles", image = hash("t-1") },
+		T2 = { tex = "tiles", image = hash("t-2") },
+		T3 = { tex = "tiles", image = hash("t-3") },
+		T4 = { tex = "tiles", image = hash("t-4") },
+		I1 = { tex = "tiles", image = hash("i-1") },
+		I2 = { tex = "tiles", image = hash("i-2") },
+		O = { tex = "tiles", image = hash("o") },
+	}
+	local data = tile_map[tile]
+	print(data.tex, data.image)
+
+	return 
 end
