@@ -16,4 +16,7 @@ images {
 images {
   image: "/assets/Pictures/Menu/menu-start.png"
 }
+images {
+  image: "/assets/Pictures/Menu/menu-screen15-45.jpg"
+}
 extrude_borders: 2

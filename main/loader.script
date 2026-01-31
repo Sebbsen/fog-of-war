@@ -34,9 +34,14 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("load_level") then
 		msg.post(proxy, "load")						--Aktiviert den Proxy und lädt das Level
 		msg.post(sender, "loaded")					--Meldet Laden zurück
-	elseif message_id == hash("proxy_loaded") then
-		-- enable the collection and let the loader know
+		
+	elseif message_id == hash("proxy_loaded") then	--Wenn er vom Proxy Rückmeldung bekommt
 		msg.post(sender, "enable")					--Aktiviert geladenes Level
+
+	elseif message_id == hash("unload_level") then
+		msg.post(proxy, "disable")
+		msg.post(proxy, "final")
+		msg.post(proxy, "unload")
 	end
 end
 
