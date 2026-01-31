@@ -52,6 +52,7 @@ local BRICKS = {
 		{0, 1, 0}
 	}
 }
+local CURRENT_BRICK = BRICKS["T"]
 
 
 -- Das ist unsere Matrix (Zahlen-Tabelle)
@@ -137,28 +138,76 @@ function draw_tilemap(self, draw_ground)
 	end
 end
 
+local function draw_brick_preview(self, grid_x, grid_y, is_visible)
+	local tilemap_url = "#level"
+	local selected_brick = BRICKS["T"] -- Später durch self.current_brick ersetzbar
+
+	for y = 1, BRICK_SIZE do
+		for x = 1, BRICK_SIZE do
+			if selected_brick[y][x] == 1 then
+				local target_x = x + grid_x - 2
+				local target_y = (GRID_HEIGHT + 1) - (y + grid_y - 2)
+
+				-- Prüfen, ob wir innerhalb der Map-Grenzen sind
+				if target_x >= 1 and target_x <= GRID_WIDTH and target_y >= 1 and target_y <= GRID_HEIGHT then
+					if is_visible then
+						-- Zeichne ein spezielles Preview-Tile (z.B. ID 0 oder ein semi-transparentes)
+						tilemap.set_tile(tilemap_url, "fog", target_x, target_y, 4)
+					else
+						-- Stelle den Originalzustand aus der Matrix wieder her
+						local original_y = (GRID_HEIGHT + 1) - target_y
+						tilemap.set_tile(tilemap_url, "fog", target_x, target_y, self.fog_matrix[original_y][target_x])
+					end
+				end
+			end
+		end
+	end
+end
+
 
 
 function on_input(self, action_id, action)
+	-- 1. Mausposition immer berechnen
+	local mouse_x = math.floor(action.x / TILE_SIZE) + 1
+	local mouse_y = math.floor(action.y / TILE_SIZE) + 1
+	local mouse_y_inverted = (GRID_HEIGHT + 1) - mouse_y
+
+	-- 2. HOVER EFFEKT (Muss außerhalb von action_id == hash("touch") sein!)
+	if not action_id then
+		-- Nur aktualisieren, wenn die Maus das Feld gewechselt hat
+		if mouse_x ~= self.last_mouse_x or mouse_y_inverted ~= self.last_mouse_y then
+			-- Alte Vorschau an der alten Position löschen
+			if self.last_mouse_x then
+				draw_brick_preview(self, self.last_mouse_x, self.last_mouse_y, false)
+			end
+
+			-- Neue Vorschau an der aktuellen Position zeichnen
+			draw_brick_preview(self, mouse_x, mouse_y_inverted, true)
+
+			self.last_mouse_x = mouse_x
+			self.last_mouse_y = mouse_y_inverted
+		end
+	end
+
+	-- 3. KLICK (Platzieren)
 	if action_id == hash("touch") and action.pressed then
 		print("klick")
 		local selected_brick = BRICKS["T"]
-		local mouse_x = math.floor(action.x / TILE_SIZE) + 1
-		local mouse_y = math.floor(action.y / TILE_SIZE) + 1
-		--invert y weil matrix auch inverted
-		mouse_y_inverted = (GRID_HEIGHT + 1) - mouse_y
-
-		
-
 
 		for y = 1, BRICK_SIZE do
 			for x = 1, BRICK_SIZE do
 				if selected_brick[y][x] == 1 then
-					self.fog_matrix[y+mouse_y_inverted-2][x+mouse_x-2] = 0;
+					local target_y = y + mouse_y_inverted - 2
+					local target_x = x + mouse_x - 2
+
+					-- Sicherheits-Check, damit wir nicht außerhalb der Matrix schreiben
+					if target_y >= 1 and target_y <= GRID_HEIGHT and target_x >= 1 and target_x <= GRID_WIDTH then
+						self.fog_matrix[target_y][target_x] = 0
+					end
 				end
 			end
 		end
+		-- Map neu zeichnen (ohne Ground, um Performance zu sparen)
 		draw_tilemap(self, false)
 	end
-	
 end
