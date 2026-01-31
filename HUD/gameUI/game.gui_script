@@ -19,6 +19,16 @@ function on_message(self, message_id, message, sender)
 		local done = gui.get_node("done")
 		gui.set_color(done, vmath.vector4(0, 0, 0, 1))
 		gui.animate(done, "position.x", 350, gui.EASING_OUTSINE, 1)
+		
+	elseif message_id == hash("current_score") then
+		local text = gui.get_node("score_number")
+		gui.set_text(text, tostring(message.score))
+
+	elseif message_id == hash("current_tiles") then
+		local current = gui.get_node("current_tile")
+		local next = gui.get_node("next_tile")
+		--gui.set_texture(current, texture)
+		--gui.set_texture(next, texture)
 	end
 end
 

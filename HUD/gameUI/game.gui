@@ -11,17 +11,21 @@ textures {
   name: "ende"
   texture: "/assets/Pictures/Ende/ende.atlas"
 }
+textures {
+  name: "tiles"
+  texture: "/assets/Pictures/Tiles/tiles.atlas"
+}
 nodes {
   position {
-    x: 875.0
-    y: 59.0
+    x: 920.0
+    y: 88.0
   }
   size {
     x: 150.0
     y: 150.0
   }
   type: TYPE_BOX
-  id: "current"
+  id: "tiles"
   xanchor: XANCHOR_LEFT
   yanchor: YANCHOR_BOTTOM
   inherit_alpha: true
@@ -29,23 +33,37 @@ nodes {
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
-  scale {
-    x: 0.5
+  position {
+    x: -50.0
+    y: 50.0
+  }
+  color {
+    y: 0.8
+    z: 0.4
   }
   type: TYPE_BOX
-  texture: "mainmenu/menu-button-1"
-  id: "current_bg"
-  parent: "current"
+  texture: "tiles/l-shape-1"
+  id: "current_tile"
+  parent: "tiles"
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
-  size {
-    x: 100.0
-    y: 100.0
+  position {
+    x: 15.0
+    y: 253.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  color {
+    y: 0.8
+    z: 0.4
   }
   type: TYPE_BOX
-  id: "current_tile"
-  parent: "current"
+  texture: "tiles/l-shape-3"
+  id: "next_tile"
+  parent: "tiles"
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
@@ -97,7 +115,7 @@ nodes {
   type: TYPE_TEXT
   text: "0"
   font: "always_on_top"
-  id: "text"
+  id: "score_number"
   parent: "score"
   inherit_alpha: true
 }

@@ -1,0 +1,34 @@
+images {
+  image: "/assets/Pictures/Tiles/l-shape-1.png"
+}
+images {
+  image: "/assets/Pictures/Tiles/l-shape-2.png"
+}
+images {
+  image: "/assets/Pictures/Tiles/l-shape-3.png"
+}
+images {
+  image: "/assets/Pictures/Tiles/l-shape-4.png"
+}
+images {
+  image: "/assets/Pictures/Tiles/square-shape.png"
+}
+images {
+  image: "/assets/Pictures/Tiles/straight-shape-1.png"
+}
+images {
+  image: "/assets/Pictures/Tiles/straight-shape-2.png"
+}
+images {
+  image: "/assets/Pictures/Tiles/t-shape-1.png"
+}
+images {
+  image: "/assets/Pictures/Tiles/t-shape-2.png"
+}
+images {
+  image: "/assets/Pictures/Tiles/t-shape-3.png"
+}
+images {
+  image: "/assets/Pictures/Tiles/t-shape-4.png"
+}
+extrude_borders: 2
