@@ -339,6 +339,7 @@ function on_input(self, action_id, action)
 				end
 			end
 		end
+		print(points)
 		msg.post("main:/gui#game", "current_score", { score = points })
 		
 	end
