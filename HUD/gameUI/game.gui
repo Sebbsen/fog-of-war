@@ -30,8 +30,6 @@ nodes {
   }
   type: TYPE_BOX
   id: "tiles"
-  xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_BOTTOM
   inherit_alpha: true
   alpha: 0.0
   size_mode: SIZE_MODE_AUTO
@@ -44,10 +42,6 @@ nodes {
   scale {
     x: 0.6
     y: 0.6
-  }
-  color {
-    y: 0.8
-    z: 0.4
   }
   type: TYPE_BOX
   texture: "tiles/L1"
@@ -76,7 +70,6 @@ nodes {
   texture: "ingame/outer-frame"
   id: "current_frame"
   parent: "current_tile"
-  inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
@@ -87,10 +80,6 @@ nodes {
   scale {
     x: 0.4
     y: 0.4
-  }
-  color {
-    y: 0.8
-    z: 0.4
   }
   type: TYPE_BOX
   texture: "tiles/L2"
@@ -258,7 +247,7 @@ nodes {
 }
 nodes {
   position {
-    x: 912.0
+    x: 1292.0
     y: 420.0
   }
   size {
@@ -270,6 +259,7 @@ nodes {
   inherit_alpha: true
   alpha: 0.0
   size_mode: SIZE_MODE_AUTO
+  visible: false
 }
 nodes {
   position {
@@ -285,6 +275,7 @@ nodes {
   id: "restart_bg"
   parent: "restart"
   size_mode: SIZE_MODE_AUTO
+  visible: false
 }
 nodes {
   scale {
@@ -299,6 +290,7 @@ nodes {
   id: "restart_text"
   parent: "restart"
   size_mode: SIZE_MODE_AUTO
+  visible: false
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
