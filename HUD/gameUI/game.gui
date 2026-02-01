@@ -195,7 +195,7 @@ nodes {
     y: 0.3
   }
   type: TYPE_BOX
-  texture: "ende/punkte"
+  texture: "ende/global-highscore"
   id: "endscore"
   parent: "done"
   inherit_alpha: true
@@ -253,14 +253,15 @@ nodes {
 }
 nodes {
   position {
-    y: 5.0
+    x: 8.0
+    y: -2.0
   }
   scale {
-    x: 0.4
-    y: 0.4
+    x: 0.6
+    y: 0.6
   }
   type: TYPE_BOX
-  texture: "ende/zurueck"
+  texture: "ende/menu-button-done"
   id: "back_text"
   parent: "back"
   inherit_alpha: true
@@ -297,15 +298,15 @@ nodes {
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
-  scale {
-    x: 0.4
-    y: 0.4
+  position {
+    y: -10.0
   }
-  size {
-    x: 200.0
-    y: 100.0
+  scale {
+    x: 0.6
+    y: 0.6
   }
   type: TYPE_BOX
+  texture: "ende/menu-button-done"
   id: "restart_text"
   parent: "restart"
   size_mode: SIZE_MODE_AUTO
