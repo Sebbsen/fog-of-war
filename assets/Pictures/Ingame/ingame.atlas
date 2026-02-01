@@ -16,4 +16,7 @@ images {
 images {
   image: "/assets/Pictures/Ingame/points-new.png"
 }
+images {
+  image: "/assets/Pictures/Ingame/background-sonntag-14-00.jpg"
+}
 extrude_borders: 2

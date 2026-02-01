@@ -9,11 +9,15 @@ textures {
 }
 nodes {
   position {
-    x: -200.0
+    x: -136.0
     y: -1.0
   }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
   type: TYPE_BOX
-  texture: "mainmenu/menu-screen15-45"
+  texture: "mainmenu/menu-background-sonntag-13-47"
   id: "background"
   pivot: PIVOT_SW
   inherit_alpha: true
@@ -21,8 +25,8 @@ nodes {
 }
 nodes {
   position {
-    x: 800.0
-    y: 437.0
+    x: 822.0
+    y: 124.0
   }
   size {
     x: 250.0
@@ -64,7 +68,7 @@ nodes {
 }
 nodes {
   position {
-    x: 781.0
+    x: 1482.0
     y: 190.0
   }
   size {
@@ -89,6 +93,7 @@ nodes {
   texture: "mainmenu/menu-button-2"
   id: "help_bg"
   parent: "help"
+  inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
@@ -103,26 +108,24 @@ nodes {
   texture: "mainmenu/menu-help"
   id: "help_text"
   parent: "help"
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: 362.0
-    y: 534.0
-  }
-  scale {
-    x: 0.85
-    y: 0.85
-  }
-  type: TYPE_BOX
-  texture: "mainmenu/hmbd-logo"
-  id: "logo"
   inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
-    x: 263.0
+    x: 480.0
+    y: 501.0
+  }
+  type: TYPE_BOX
+  texture: "mainmenu/hmbd-logo"
+  id: "logo"
+  inherit_alpha: true
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -888.0
     y: 161.0
   }
   size {
@@ -132,6 +135,7 @@ nodes {
   type: TYPE_BOX
   id: "instructions"
   inherit_alpha: true
+  alpha: 0.0
   size_mode: SIZE_MODE_AUTO
   visible: false
 }

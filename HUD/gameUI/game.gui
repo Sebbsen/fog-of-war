@@ -3,6 +3,10 @@ fonts {
   name: "always_on_top"
   font: "/builtins/fonts/debug/always_on_top.font"
 }
+fonts {
+  name: "bogmode"
+  font: "/assets/bogmode.font"
+}
 textures {
   name: "mainmenu"
   texture: "/assets/Pictures/Menu/mainmenu.atlas"
@@ -18,6 +22,10 @@ textures {
 textures {
   name: "ingame"
   texture: "/assets/Pictures/Ingame/ingame.atlas"
+}
+textures {
+  name: "help"
+  texture: "/assets/Pictures/Help/help.atlas"
 }
 nodes {
   position {
@@ -70,6 +78,7 @@ nodes {
   texture: "ingame/outer-frame"
   id: "current_frame"
   parent: "current_tile"
+  alpha: 0.0
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
@@ -97,6 +106,7 @@ nodes {
   id: "next_frame"
   parent: "next_tile"
   inherit_alpha: true
+  alpha: 0.0
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
@@ -116,20 +126,15 @@ nodes {
 }
 nodes {
   position {
-    x: -24.0
-    y: -6.0
-  }
-  scale {
-    x: 10.0
-    y: 10.0
+    x: -8.0
   }
   size {
-    x: 10.0
-    y: 10.0
+    x: 258.0
+    y: 141.0
   }
   type: TYPE_TEXT
   text: "0"
-  font: "always_on_top"
+  font: "bogmode"
   id: "score_number"
   parent: "score"
   inherit_alpha: true
@@ -182,7 +187,7 @@ nodes {
 }
 nodes {
   position {
-    x: 184.0
+    x: 149.0
     y: 20.0
   }
   scale {
@@ -198,8 +203,24 @@ nodes {
 }
 nodes {
   position {
-    x: 208.0
-    y: -79.0
+    x: 446.66666
+    y: -6.666666
+  }
+  size {
+    x: 10.0
+    y: 10.0
+  }
+  type: TYPE_TEXT
+  text: "0"
+  font: "bogmode"
+  id: "endscore_number"
+  parent: "endscore"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 180.0
+    y: -72.0
   }
   size {
     x: 200.0
@@ -247,8 +268,8 @@ nodes {
 }
 nodes {
   position {
-    x: 1292.0
-    y: 420.0
+    x: 899.0
+    y: 555.0
   }
   size {
     x: 200.0
@@ -259,7 +280,6 @@ nodes {
   inherit_alpha: true
   alpha: 0.0
   size_mode: SIZE_MODE_AUTO
-  visible: false
 }
 nodes {
   position {
@@ -275,7 +295,6 @@ nodes {
   id: "restart_bg"
   parent: "restart"
   size_mode: SIZE_MODE_AUTO
-  visible: false
 }
 nodes {
   scale {
@@ -290,7 +309,113 @@ nodes {
   id: "restart_text"
   parent: "restart"
   size_mode: SIZE_MODE_AUTO
-  visible: false
+}
+nodes {
+  position {
+    x: 908.0
+    y: 409.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "help"
+  inherit_alpha: true
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 26.0
+  }
+  scale {
+    x: 0.6
+    y: 0.6
+  }
+  type: TYPE_BOX
+  texture: "mainmenu/menu-button-2"
+  id: "help_bg"
+  parent: "help"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 29.0
+  }
+  scale {
+    x: 0.6
+    y: 0.6
+  }
+  type: TYPE_BOX
+  texture: "mainmenu/menu-help"
+  id: "help_text"
+  parent: "help"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -245.0
+    y: -201.0
+  }
+  scale {
+    x: 0.4
+    y: 0.4
+  }
+  type: TYPE_BOX
+  texture: "help/menu-help-current"
+  id: "helpbox_current"
+  parent: "help"
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -171.0
+    y: -334.0
+  }
+  scale {
+    x: 0.4
+    y: 0.4
+  }
+  type: TYPE_BOX
+  texture: "help/menu-help-next"
+  id: "helpbox_next"
+  parent: "help"
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -694.0
+    y: -207.0
+  }
+  scale {
+    x: 0.4
+    y: 0.4
+  }
+  type: TYPE_BOX
+  texture: "help/menu-help-points"
+  id: "helpbox_points"
+  parent: "help"
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -650.0
+    y: 249.0
+  }
+  scale {
+    x: 0.4
+    y: 0.4
+  }
+  type: TYPE_BOX
+  texture: "help/menu-help-danger"
+  id: "helpbox_danger"
+  parent: "help"
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

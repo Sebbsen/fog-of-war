@@ -37,7 +37,7 @@ embedded_instances {
   data: "embedded_components {\n"
   "  id: \"game_background\"\n"
   "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"background-sonntag-11-04\\\"\\n"
+  "  data: \"default_animation: \\\"background-sonntag-14-00\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"

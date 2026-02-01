@@ -1,0 +1,13 @@
+images {
+  image: "/assets/Pictures/Help/menu-help-current.png"
+}
+images {
+  image: "/assets/Pictures/Help/menu-help-danger.png"
+}
+images {
+  image: "/assets/Pictures/Help/menu-help-next.png"
+}
+images {
+  image: "/assets/Pictures/Help/menu-help-points.png"
+}
+extrude_borders: 2

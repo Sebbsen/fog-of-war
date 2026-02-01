@@ -19,4 +19,10 @@ images {
 images {
   image: "/assets/Pictures/Menu/menu-screen15-45.jpg"
 }
+images {
+  image: "/assets/Pictures/Menu/menu-background-sonntag-13-47.jpg"
+}
+images {
+  image: "/assets/Pictures/Menu/menu-hilfe.png"
+}
 extrude_borders: 2
