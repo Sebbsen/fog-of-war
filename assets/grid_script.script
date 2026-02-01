@@ -109,8 +109,8 @@ local function create_dragon_matrix(grid)
 		end
 	end
 	for z = 1, GRID_HEIGHT * GRID_WIDTH do
-		local j = math.floor(a[z] / GRID_WIDTH)
-		local i = a[z] % GRID_HEIGHT
+		local j = math.floor(a[z] / GRID_WIDTH) + 1
+		local i = a[z] % GRID_HEIGHT + 1
 		if grid[j][i] > 0 then
 			m[j][i] = 1
 			dragons = dragons + 1
