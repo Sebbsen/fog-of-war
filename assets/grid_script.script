@@ -190,7 +190,7 @@ local function reset_last_placement_matrix(self)
 end
 
 function legalBrickPlacement(self, grid_x, grid_y)
-	return isAdjacentToLastPlaced(self, grid_x, grid_y) and noOverlapToPast(self, grid_x, grid_y)
+	return isAdjacentToLastPlaced(self, grid_x, grid_y) and noOverlapToPast(self, grid_x, grid_y) and notOutOfMap(self, grid_x, grid_y)
 end
 
 function isAdjacentToLastPlaced(self, grid_x, grid_y)
@@ -280,6 +280,25 @@ function noOverlapToPast(self, grid_x, grid_y)
 end
 
 
+function notOutOfMap(self, grid_x, grid_y)
+	local selected_brick = CURRENT_BRICK
+	for y = 1, BRICK_SIZE do
+		for x = 1, BRICK_SIZE do
+			if selected_brick[y][x] == 1 then
+				-- Berechne die absolute Position im Grid
+				local target_y = y + grid_y - 2
+				local target_x = x + grid_x - 2
+
+				-- Check: Sind wir innerhalb des Grids?
+				if target_y >= 1 and target_y <= GRID_HEIGHT and target_x >= 1 and target_x <= GRID_WIDTH then
+					return true
+				else
+					return false
+				end
+			end
+		end
+	end
+end
 
 
 
