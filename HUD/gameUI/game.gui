@@ -388,15 +388,15 @@ nodes {
 }
 nodes {
   position {
-    x: -694.0
-    y: -207.0
+    x: -709.0
+    y: -172.0
   }
   scale {
     x: 0.4
     y: 0.4
   }
   type: TYPE_BOX
-  texture: "help/menu-help-points"
+  texture: "help/menu-help-points-new"
   id: "helpbox_points"
   parent: "help"
   alpha: 0.0

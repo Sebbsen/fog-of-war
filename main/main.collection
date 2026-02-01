@@ -86,6 +86,12 @@ embedded_instances {
   "  data: \"sound: \\\"/assets/sound/scribble-6144.ogg\\\"\\n"
   "\"\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"nope\"\n"
+  "  type: \"sound\"\n"
+  "  data: \"sound: \\\"/assets/sound/wood-block-105066.ogg\\\"\\n"
+  "\"\n"
+  "}\n"
   ""
   position {
     x: 934.0

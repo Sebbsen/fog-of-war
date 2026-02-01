@@ -10,4 +10,7 @@ images {
 images {
   image: "/assets/Pictures/Help/menu-help-points.png"
 }
+images {
+  image: "/assets/Pictures/Help/menu-help-points-new.png"
+}
 extrude_borders: 2
