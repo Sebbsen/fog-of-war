@@ -223,17 +223,20 @@ function draw_tilemap(self, draw_ground, draw_dragons)
 		end
 	end
 	-- Ränder aufbauen
-	for i = 1, GRID_WIDTH do
-		if north[i] == true then
-			local position = vmath.vector3(i*64, 9*64, 0.7)
-			local id = factory.create("factory_north#factory", position)
+	if draw_dragons then
+		for i = 1, GRID_WIDTH do
+			if north[i] == true then
+				local position = vmath.vector3(32+i*64, 32+11*64, 0.7)
+				local id = factory.create("factory_north#factory", position)
+			end
 		end
-	end
-	for j = 1, GRID_HEIGHT do
-		if west[i] == true then
+		for j = 1, GRID_HEIGHT do
+			if west[j] == true then
+				local position = vmath.vector3(32, 32+(GRID_HEIGHT + 1 - j)*64, 0.7)
+				local id = factory.create("factory_west#factory", position)
+			end
 		end
-	end
-		
+	end	
 end
 	
 
