@@ -58,27 +58,41 @@ local BRICKS = {
 }
 
 
-local BRICK_SEQUENCE = {
-	"T1", "L4", "O", "I2", "L2", "T3", "I1", "L1", "T4", "O", 
-	"L3", "T2", "I2", "L1", "T1", "L4", "O", "I2", "L2", "T3", "I1", "L1", "T4", "O", 
-	"L3", "T2", "I2", "L1", "T1", "I2", "L2", "T3", "I1", "L1", "T4", "O", 
-	"L3", "T2", "I2", "L1", "T1", "L4", "O", "I2", "L2", "T3", "I1", "L1", "T4", "O", 
-	"L3", "T2", "I2", "L1", "T1", "L4", "O"
+local BRICK_GROUPS = {
+	{"L1","L2","L3","L4"},
+	{"T1","T2","T3","T4"},
+	{"I1","I2","O","O"}
 }
 
-local CURRENT_BRICK = 1
+local LAST_BRICK_GROUP
+
+local CURRENT_BRICK
+local NEXT_BRICK
+
+function get_random_brick()
+	local current_brick_group = LAST_BRICK_GROUP
+	while current_brick_group == LAST_BRICK_GROUP do
+		current_brick_group = math.random(1, 3)
+	end
+	LAST_BRICK_GROUP = current_brick_group
+	local brick_number = math.random(1, 4)
+	local new_brick = BRICK_GROUPS[current_brick_group][brick_number]
+	return new_brick
+end
 
 function get_next_brick()
-	local brick_letter = BRICK_SEQUENCE[CURRENT_BRICK]
-	CURRENT_BRICK = CURRENT_BRICK+1
-	msg.post("main:/gui#game", "current_tiles", {current = brick_letter, next = BRICK_SEQUENCE[CURRENT_BRICK]})
-	if CURRENT_BRICK > #BRICK_SEQUENCE then
-		msg.post("main:/gui#game", "level_complete")
+	-- check if first brick
+	if NEXT_BRICK == nil then
+		CURRENT_BRICK = get_random_brick()
+	else
+		CURRENT_BRICK = NEXT_BRICK
 	end
-	return BRICKS[brick_letter]
+	
+	NEXT_BRICK = get_random_brick()
+	msg.post("main:/gui#game", "current_tiles", {current = CURRENT_BRICK, next = NEXT_BRICK})
+	return BRICKS[CURRENT_BRICK]
 end
 
 function get_next_preview_brick()
-	local brick_letter = BRICK_SEQUENCE[CURRENT_BRICK + 1]
-	return BRICKS[brick_letter]
+	return BRICKS[NEXT_BRICK]
 end

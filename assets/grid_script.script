@@ -208,7 +208,7 @@ end
 
 local function draw_brick_preview(self, grid_x, grid_y, is_visible)
 	local tilemap_url = "#level"
-	local selected_brick = CURRENT_BRICK -- Später durch self.current_brick ersetzbar
+	local selected_brick = CURRENT_BRICK
 
 	for y = 1, BRICK_SIZE do
 		for x = 1, BRICK_SIZE do
