@@ -8,4 +8,8 @@ embedded_components {
   "  texture: \"/assets/Pictures/Ingame/ingame.atlas\"\n"
   "}\n"
   ""
+  scale {
+    x: 0.2
+    y: 0.2
+  }
 }
