@@ -80,7 +80,7 @@ function get_random_brick()
 	return new_brick
 end
 
-function get_next_brick()
+function get_next_brick()	
 	-- check if first brick
 	if NEXT_BRICK == nil then
 		CURRENT_BRICK = get_random_brick()
