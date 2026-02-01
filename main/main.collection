@@ -84,3 +84,23 @@ embedded_instances {
     y: 1.011062
   }
 }
+embedded_instances {
+  id: "factory_north"
+  data: "embedded_components {\n"
+  "  id: \"factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/hint_north.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "factory_west"
+  data: "embedded_components {\n"
+  "  id: \"factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/hint_west.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
