@@ -199,6 +199,9 @@ function draw_tilemap(self, draw_ground, draw_dragons)
 			if draw_ground then
 				tilemap.set_tile(tilemap_url, "ground", x, inverted_y, ground_tile_to_draw)
 			end
+			if draw_dragons and self.dragon_matrix[y][x] == 1 then
+				tilemap.set_tile(tilemap_url, "dragons", x, inverted_y, 51)
+			end
 			tilemap.set_tile(tilemap_url, "fog", x, inverted_y, fog_tile_to_draw)
 			tilemap.set_tile(tilemap_url, "lastplacement", x, inverted_y, last_placement_tile_to_draw)
 		end
