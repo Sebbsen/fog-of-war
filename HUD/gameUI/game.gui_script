@@ -54,6 +54,10 @@ function on_input(self, action_id, action)
 		
 	elseif action_id == hash("gameover") then
 		msg.post("#", "level_complete")
+
+	elseif action_id == hash("exit") then
+		msg.post("menu:/main", "show_main_menu")		--zeigt das Hauptmenü
+		msg.post("menu:/loader#loader", "unload_level")	--Sagt dem loader, er soll das Level unloaden
 	end
 end
 
