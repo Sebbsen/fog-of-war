@@ -1,0 +1,19 @@
+images {
+  image: "/assets/Pictures/Ingame/background-sonntag-11-04.jpg"
+}
+images {
+  image: "/assets/Pictures/Ingame/current-tile.png"
+}
+images {
+  image: "/assets/Pictures/Ingame/dragon-below.png"
+}
+images {
+  image: "/assets/Pictures/Ingame/dragon-right.png"
+}
+images {
+  image: "/assets/Pictures/Ingame/outer-frame.png"
+}
+images {
+  image: "/assets/Pictures/Ingame/points-new.png"
+}
+extrude_borders: 2
