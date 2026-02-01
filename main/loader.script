@@ -53,6 +53,8 @@ function on_message(self, message_id, message, sender)
 		print("proxy unloaded")
 		if restart == true then
 			msg.post("#", "load_level")
+
+			
 			restart = false
 		end
 		
