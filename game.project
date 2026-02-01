@@ -22,3 +22,6 @@ scale_mode = stretch
 [project]
 title = here-may-be-dragons
 
+[windows]
+app_icon = /assets/Pictures/favicon.ico
+
