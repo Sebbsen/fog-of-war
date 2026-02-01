@@ -31,9 +31,6 @@ embedded_instances {
   "  component: \"/HUD/gameUI/game.gui\"\n"
   "}\n"
   ""
-  position {
-    z: -0.1
-  }
 }
 embedded_instances {
   id: "background"
@@ -70,7 +67,7 @@ embedded_instances {
   "  position {\n"
   "    x: -567.86505\n"
   "    y: -54.398247\n"
-  "    z: 0.1\n"
+  "    z: 0.6\n"
   "  }\n"
   "  scale {\n"
   "    x: 0.278949\n"

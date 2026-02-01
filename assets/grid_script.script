@@ -343,13 +343,14 @@ function notOutOfMap(self, grid_x, grid_y)
 
 				-- Check: Sind wir innerhalb des Grids?
 				if target_y >= 1 and target_y <= GRID_HEIGHT and target_x >= 1 and target_x <= GRID_WIDTH then
-					return true
+					
 				else
 					return false
 				end
 			end
 		end
 	end
+	return true
 end
 
 
