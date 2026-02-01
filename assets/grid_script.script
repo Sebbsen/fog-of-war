@@ -188,6 +188,15 @@ function draw_tilemap(self, draw_ground, draw_dragons)
 	-- "#level" ist die ID der Tilemap-Komponente im Game Object
 	local tilemap_url = "#level" 
 
+	local north = {}
+	local west = {}
+	for i = 1, GRID_WIDTH do
+		north[i] = false
+	end
+	for j = 1, GRID_HEIGHT do
+		west[j] = false
+	end
+		
 	-- 3. Die Matrix auf die Tilemap zeichnen
 	for y = 1, GRID_HEIGHT do
 		for x = 1, GRID_WIDTH do
@@ -205,6 +214,8 @@ function draw_tilemap(self, draw_ground, draw_dragons)
 				print(TILESETS_KEY[1])
 				local terrain_name = TILESETS_KEY[self.ground_matrix[y][x]]
 				tilemap.set_tile(tilemap_url, "dragons", x, inverted_y, TILESETS["dragon"][terrain_name])
+				north[x] = true
+				west[y] = false
 			end
 			tilemap.set_tile(tilemap_url, "fog", x, inverted_y, fog_tile_to_draw)
 			tilemap.set_tile(tilemap_url, "lastplacement", x, inverted_y, last_placement_tile_to_draw)
