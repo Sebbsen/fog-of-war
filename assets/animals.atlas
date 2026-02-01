@@ -1,0 +1,4 @@
+images {
+  image: "/assets/Pictures/fox_64x64.png"
+}
+extrude_borders: 2
