@@ -1,5 +1,8 @@
+go.property("tiles_atlas", resource.atlas("/assets/Pictures/Tiles/tiles.atlas"))
+
 function init(self)
 	msg.post(".", "acquire_input_focus")
+	
 end
 
 function final(self)
@@ -29,11 +32,12 @@ function on_message(self, message_id, message, sender)
 		local next = gui.get_node("next_tile")
 		local current_tile = hash(message.current)
 		local next_tile = hash(message.next)
+		print("current:", current_tile, ", next:", next_tile)
 		
-		gui.set_texture(current, tiles)
-		gui.play_flipbook(current, current_tile)
-		gui.set_texture(next, tiles)
-		gui.play_flipbook(next, next_tile)
+		gui.set_texture(current, "tiles_atlas")
+		--gui.play_flipbook(current, current_tile)
+		--gui.set_texture(next, self.tiles_atlas)
+		--gui.play_flipbook(next, next_tile)
 	end
 end
 
