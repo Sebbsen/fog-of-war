@@ -15,6 +15,10 @@ textures {
   name: "tiles"
   texture: "/assets/Pictures/Tiles/tiles.atlas"
 }
+textures {
+  name: "ingame"
+  texture: "/assets/Pictures/Ingame/ingame.atlas"
+}
 nodes {
   position {
     x: 946.0
@@ -52,6 +56,30 @@ nodes {
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
+  scale {
+    x: 0.713053
+    y: 0.5069
+  }
+  type: TYPE_BOX
+  texture: "ingame/current-tile"
+  id: "current_arrow"
+  parent: "current_tile"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.102872
+    y: 0.103571
+  }
+  type: TYPE_BOX
+  texture: "ingame/outer-frame"
+  id: "current_frame"
+  parent: "current_tile"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
   position {
     x: -45.0
     y: 4.0
@@ -71,50 +99,44 @@ nodes {
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
-  position {
-    x: 896.0
-    y: 741.0
-  }
   scale {
-    x: -1.0
+    x: 0.102348
+    y: 0.10147
   }
   type: TYPE_BOX
-  texture: "mainmenu/menu-button-2"
+  texture: "ingame/outer-frame"
+  id: "next_frame"
+  parent: "next_tile"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 911.0
+    y: 709.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  type: TYPE_BOX
+  texture: "ingame/points-new"
   id: "score"
   inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
-    x: 66.0
-    y: -16.0
-  }
-  rotation {
-    z: 4.103
+    x: -24.0
+    y: -6.0
   }
   scale {
-    x: -0.3
-    y: 0.3
-  }
-  type: TYPE_BOX
-  texture: "ende/punkte"
-  id: "score_text"
-  parent: "score"
-  inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: -64.0
-    y: -29.0
-  }
-  scale {
-    x: -5.0
-    y: 5.0
+    x: 10.0
+    y: 10.0
   }
   size {
-    x: 200.0
-    y: 100.0
+    x: 10.0
+    y: 10.0
   }
   type: TYPE_TEXT
   text: "0"
@@ -236,8 +258,8 @@ nodes {
 }
 nodes {
   position {
-    x: 927.0
-    y: 531.0
+    x: 912.0
+    y: 420.0
   }
   size {
     x: 200.0

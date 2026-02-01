@@ -222,8 +222,10 @@ local function draw_brick_preview(self, grid_x, grid_y, is_visible)
 				-- Prüfen, ob wir innerhalb der Map-Grenzen sind
 				if target_x >= 1 and target_x <= GRID_WIDTH and target_y >= 1 and target_y <= GRID_HEIGHT then
 					if is_visible then
-						-- Zeichne ein spezielles Preview-Tile (z.B. ID 0 oder ein semi-transparentes)
 						tilemap.set_tile(tilemap_url, "preview", target_x, target_y, 42)
+						if not legalBrickPlacement(self, grid_x, grid_y) then
+							tilemap.set_tile(tilemap_url, "preview", target_x, target_y, 41)
+						end
 					else
 						-- Stelle den Originalzustand aus der Matrix wieder her
 						local original_y = (GRID_HEIGHT + 1) - target_y
