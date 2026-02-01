@@ -17,8 +17,8 @@ textures {
 }
 nodes {
   position {
-    x: 920.0
-    y: 88.0
+    x: 946.0
+    y: 80.0
   }
   size {
     x: 150.0
@@ -35,7 +35,11 @@ nodes {
 nodes {
   position {
     x: -50.0
-    y: 50.0
+    y: 172.0
+  }
+  scale {
+    x: 0.6
+    y: 0.6
   }
   color {
     y: 0.8
@@ -49,12 +53,12 @@ nodes {
 }
 nodes {
   position {
-    x: 15.0
-    y: 253.0
+    x: -45.0
+    y: 4.0
   }
   scale {
-    x: 0.5
-    y: 0.5
+    x: 0.4
+    y: 0.4
   }
   color {
     y: 0.8
@@ -68,8 +72,8 @@ nodes {
 }
 nodes {
   position {
-    x: 806.0
-    y: 620.0
+    x: 896.0
+    y: 741.0
   }
   scale {
     x: -1.0
@@ -228,6 +232,50 @@ nodes {
   id: "back_text"
   parent: "back"
   inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 927.0
+    y: 531.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "restart"
+  inherit_alpha: true
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -2.0
+    y: -8.0
+  }
+  scale {
+    x: 0.6
+    y: 0.6
+  }
+  type: TYPE_BOX
+  texture: "mainmenu/menu-button-1"
+  id: "restart_bg"
+  parent: "restart"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.4
+    y: 0.4
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "restart_text"
+  parent: "restart"
   size_mode: SIZE_MODE_AUTO
 }
 material: "/builtins/materials/gui.material"
