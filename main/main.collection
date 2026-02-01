@@ -92,6 +92,7 @@ embedded_instances {
   "  id: \"nope\"\n"
   "  type: \"sound\"\n"
   "  data: \"sound: \\\"/assets/sound/wood-block-105066.ogg\\\"\\n"
+  "gain: 0.6\\n"
   "\"\n"
   "}\n"
   ""

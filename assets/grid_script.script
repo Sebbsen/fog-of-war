@@ -424,6 +424,7 @@ function on_input(self, action_id, action)
 		local mouse_y = math.floor(action.y / TILE_SIZE) + 1
 		local mouse_y_inverted = (GRID_HEIGHT + 1) - mouse_y
 		if not legalBrickPlacement(self, mouse_x, mouse_y_inverted) then
+			sound.play("/background#nope")
 			return
 		end
 		print("klick")
