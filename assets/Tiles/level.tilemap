@@ -504,6 +504,10 @@ layers {
   }
 }
 layers {
+  id: "dragons"
+  z: 0.1
+}
+layers {
   id: "borders"
   z: 0.2
   cell {
