@@ -10,7 +10,8 @@ local TILESETS_KEY = {
 	[1] = "forest",
 	[2] = "mountain",
 	[3] = "village",
-	[4] = "pond"
+	[4] = "pond",
+	[10] = "dragon"
 }
 
 local TILESETS = {
@@ -37,6 +38,10 @@ local TILESETS = {
 	["village"] = {
 		["start"] = 61,
 		["end"] = 63 
+	},
+	["dragon"] = {
+		["start"] = 51,
+		["end"] = 54
 	}
 }
 
@@ -153,7 +158,7 @@ function init(self)
 
 	msg.post(".", "acquire_input_focus")
 	
-	draw_tilemap(self, true)
+	draw_tilemap(self, true, true)
 end
 
 function getRandomGroundTileOfType(tile_type) 
@@ -175,7 +180,7 @@ function getRandomGroundTileOfType(tile_type)
 	return 1
 end
 
-function draw_tilemap(self, draw_ground)
+function draw_tilemap(self, draw_ground, draw_dragons)
 	print("draw")
 	-- 2. Pfad zur Tilemap-Komponente definieren
 	-- "#level" ist die ID der Tilemap-Komponente im Game Object
@@ -392,7 +397,7 @@ function on_input(self, action_id, action)
 			end
 		end
 		-- Map neu zeichnen (ohne Ground, um Performance zu sparen)
-		draw_tilemap(self, false)
+		draw_tilemap(self, false, false)
 		CURRENT_BRICK = get_next_brick()
 		
 		local points = 0
