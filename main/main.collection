@@ -74,6 +74,18 @@ embedded_instances {
   "    y: 0.264463\n"
   "  }\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"dragon\"\n"
+  "  type: \"sound\"\n"
+  "  data: \"sound: \\\"/assets/sound/dragon-roar-5-364611.ogg\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"scribble\"\n"
+  "  type: \"sound\"\n"
+  "  data: \"sound: \\\"/assets/sound/scribble-6144.ogg\\\"\\n"
+  "\"\n"
+  "}\n"
   ""
   position {
     x: 934.0
