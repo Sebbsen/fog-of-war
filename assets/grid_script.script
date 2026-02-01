@@ -440,6 +440,9 @@ function on_input(self, action_id, action)
 					if target_y >= 1 and target_y <= GRID_HEIGHT and target_x >= 1 and target_x <= GRID_WIDTH then
 						self.fog_matrix[target_y][target_x] = 0
 						self.last_placement_matrix[target_y][target_x] = 43
+						if self.dragon_matrix[target_y][target_x] == 1 then
+							sound.play("/background#dragon")
+						end
 					end
 				end
 			end
@@ -470,6 +473,7 @@ function on_input(self, action_id, action)
 		end
 		print(points)
 		msg.post("main:/gui#game", "current_score", { score = points })
+		sound.play("/background#scribble")
 		
 	end
 end
