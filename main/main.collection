@@ -78,7 +78,7 @@ embedded_instances {
   "  id: \"dragon\"\n"
   "  type: \"sound\"\n"
   "  data: \"sound: \\\"/assets/sound/dragon-roar-5-364611.ogg\\\"\\n"
-  "gain: 0.3\\n"
+  "gain: 0.6\\n"
   "\"\n"
   "}\n"
   "embedded_components {\n"
