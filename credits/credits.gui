@@ -1,0 +1,134 @@
+script: "/credits/credits.gui_script"
+fonts {
+  name: "bogmode"
+  font: "/assets/bogmode.font"
+}
+textures {
+  name: "credits"
+  texture: "/credits/credits.atlas"
+}
+nodes {
+  position {
+    x: 452.0
+    y: 384.0
+  }
+  type: TYPE_BOX
+  texture: "credits/menu-screen15-45"
+  id: "background"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 237.0
+  }
+  scale {
+    x: 0.28
+    y: 0.28
+  }
+  type: TYPE_BOX
+  texture: "credits/outer-frame"
+  id: "frame"
+  parent: "background"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 687.0
+    y: 665.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "A Game by"
+  font: "bogmode"
+  id: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: -194.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "Marek Vosswinkel"
+  font: "bogmode"
+  id: "Marek Vosswinkel"
+  parent: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: -364.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "Till Degenhardt "
+  font: "bogmode"
+  id: "Till Degenhardt"
+  parent: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 140.0
+    y: 438.0
+  }
+  scale {
+    x: 0.6
+    y: 0.6
+  }
+  size {
+    x: 365.0
+    y: 170.0
+  }
+  type: TYPE_BOX
+  id: "back"
+  inherit_alpha: true
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  type: TYPE_BOX
+  texture: "credits/menu-button-1"
+  id: "back_bg"
+  parent: "back"
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  type: TYPE_BOX
+  texture: "credits/menu-button-done"
+  id: "back_text"
+  parent: "back"
+  size_mode: SIZE_MODE_AUTO
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

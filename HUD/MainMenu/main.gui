@@ -25,8 +25,8 @@ nodes {
 }
 nodes {
   position {
-    x: 822.0
-    y: 124.0
+    x: 554.0
+    y: 110.0
   }
   size {
     x: 250.0
@@ -68,108 +68,43 @@ nodes {
 }
 nodes {
   position {
-    x: 1482.0
-    y: 190.0
+    x: 867.0
+    y: 114.0
+  }
+  scale {
+    x: 0.8
+    y: 0.8
   }
   size {
-    x: 260.0
-    y: 100.0
+    x: 343.0
+    y: 125.0
   }
   type: TYPE_BOX
-  id: "help"
+  id: "credits"
   inherit_alpha: true
   alpha: 0.0
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
-    y: 22.0
-  }
-  scale {
-    x: 0.8
-    y: 0.8
+    x: -9.0
+    y: 28.0
   }
   type: TYPE_BOX
   texture: "mainmenu/menu-button-2"
-  id: "help_bg"
-  parent: "help"
-  inherit_alpha: true
+  id: "credits_bg"
+  parent: "credits"
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
-  position {
-    y: 19.0
-  }
-  scale {
-    x: 0.8
-    y: 0.8
-  }
-  type: TYPE_BOX
-  texture: "mainmenu/menu-help"
-  id: "help_text"
-  parent: "help"
-  inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: 480.0
-    y: 501.0
-  }
-  type: TYPE_BOX
-  texture: "mainmenu/hmbd-logo"
-  id: "logo"
-  inherit_alpha: true
-  alpha: 0.0
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: -888.0
-    y: 161.0
-  }
   size {
     x: 200.0
     y: 100.0
   }
   type: TYPE_BOX
-  id: "instructions"
-  inherit_alpha: true
-  alpha: 0.0
+  id: "credits_text"
+  parent: "credits"
   size_mode: SIZE_MODE_AUTO
-  visible: false
-}
-nodes {
-  scale {
-    x: 1.5
-  }
-  type: TYPE_BOX
-  texture: "mainmenu/menu-button-2"
-  id: "box"
-  parent: "instructions"
-  inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    y: -13.0
-  }
-  rotation {
-    z: 3.703
-  }
-  size {
-    x: 300.0
-    y: 100.0
-  }
-  type: TYPE_TEXT
-  text: "Place Tiles to lift the fog.\n"
-  "You can place tiles only next to the last Tile.\n"
-  "Don\'t wake the Dragons!"
-  font: "always_on_top"
-  id: "instructions_text"
-  line_break: true
-  parent: "instructions"
-  inherit_alpha: true
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
