@@ -400,8 +400,8 @@ end
 function on_input(self, action_id, action)
 	-- 2. HOVER EFFEKT (Muss außerhalb von action_id == hash("touch") sein!)
 	if action.x and action.y then
-		local mouse_x = math.floor(action.x / TILE_SIZE) + 1
-		local mouse_y = math.floor(action.y / TILE_SIZE) + 1
+		local mouse_x = math.floor(action.x / TILE_SIZE) --+ 1			--Offset als +1 in Kommentar
+		local mouse_y = math.floor(action.y / TILE_SIZE) --+ 1			--Offset als +1 in Kommentar
 		local mouse_y_inverted = (GRID_HEIGHT + 1) - mouse_y
 		-- Nur aktualisieren, wenn die Maus das Feld gewechselt hat
 		if mouse_x ~= self.last_mouse_x or mouse_y_inverted ~= self.last_mouse_y then
@@ -420,8 +420,8 @@ function on_input(self, action_id, action)
 	
 	-- 3. KLICK (Platzieren)
 	if action_id == hash("touch") and action.pressed then
-		local mouse_x = math.floor(action.x / TILE_SIZE) + 1
-		local mouse_y = math.floor(action.y / TILE_SIZE) + 1
+		local mouse_x = math.floor(action.x / TILE_SIZE) --+ 1			--Offset als +1 in Kommentar
+		local mouse_y = math.floor(action.y / TILE_SIZE) --+ 1			--Offset als +1 in Kommentar
 		local mouse_y_inverted = (GRID_HEIGHT + 1) - mouse_y
 		if not legalBrickPlacement(self, mouse_x, mouse_y_inverted) then
 			sound.play("/background#nope")
