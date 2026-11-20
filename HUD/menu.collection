@@ -20,5 +20,11 @@ embedded_instances {
   "  data: \"collection: \\\"/main/main.collection\\\"\\n"
   "\"\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"proxy_credits\"\n"
+  "  type: \"collectionproxy\"\n"
+  "  data: \"collection: \\\"/credits/credit.collection\\\"\\n"
+  "\"\n"
+  "}\n"
   ""
 }

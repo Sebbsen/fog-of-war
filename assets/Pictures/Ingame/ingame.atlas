@@ -19,4 +19,10 @@ images {
 images {
   image: "/assets/Pictures/Ingame/background-sonntag-14-00.jpg"
 }
+images {
+  image: "/assets/Pictures/Menu/menu-button-1.png"
+}
+images {
+  image: "/assets/Pictures/Menu/menu-button-2.png"
+}
 extrude_borders: 2
