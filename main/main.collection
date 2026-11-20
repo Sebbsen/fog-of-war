@@ -125,3 +125,16 @@ embedded_instances {
   "}\n"
   ""
 }
+embedded_instances {
+  id: "bird_spawner"
+  data: "components {\n"
+  "  id: \"birds\"\n"
+  "  component: \"/main/birds.particlefx\"\n"
+  "}\n"
+  ""
+  position {
+    x: 500.0
+    y: 500.0
+    z: 0.9
+  }
+}

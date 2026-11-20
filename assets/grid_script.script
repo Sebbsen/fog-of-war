@@ -161,6 +161,9 @@ function init(self)
 	msg.post(".", "acquire_input_focus")
 	
 	draw_tilemap(self, true, true)
+	
+	particlefx.play("bird_spawner#birds")
+	
 end
 
 function getRandomGroundTileOfType(tile_type) 
@@ -427,6 +430,12 @@ function on_input(self, action_id, action)
 			sound.play("/background#nope")
 			return
 		end
+
+		local pos = vmath.vector3(action.x,action.y,0.9)
+		go.set_position(pos, "bird_spawner")
+		
+		particlefx.play("bird_spawner#birds")
+		
 		print("klick")
 		reset_last_placement_matrix(self)
 		local selected_brick = CURRENT_BRICK
